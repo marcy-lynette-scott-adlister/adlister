@@ -105,4 +105,20 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error finding a ad by ID", e);
         }
     }
+
+    @Override
+    public void updateAd(Ad ad) {
+        String query = "UPDATE ads set title = ?, description = ? where id = ?";
+        try{
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, ad.getTitle());
+            stmt.setString(2, ad.getDescription());
+            stmt.setLong(3, ad.getId());
+            stmt.executeUpdate();
+
+        }
+        catch (SQLException e){
+            throw new RuntimeException("Error updating ad.", e);
+        }
+    }
 }
