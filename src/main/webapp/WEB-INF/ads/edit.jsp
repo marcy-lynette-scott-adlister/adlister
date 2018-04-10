@@ -12,10 +12,11 @@
 <div class="container">
         <div class="col-md-6">
 
-            <form action="/ads/edit" method="post">
+            <form action="/profile" method="post">
                 <input type="text" name="Edit" value="<c:out value="${ad.title}" />">
                 <textarea name="Description" value="Description" id="" cols="30" rows="10">${ad.description}</textarea>
                 <input type="submit" value="Update">
+                <input type="hidden" value="${ad.id}" name="Update">
             </form>
 
 
