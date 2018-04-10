@@ -13,4 +13,5 @@ public interface Ads {
     List<Ad> userAds (Long id);
     Ad findByAdId (Long id);
     void updateAd(Ad ad);
+    void deleteAd(Long id);
 }
