@@ -7,6 +7,7 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String url;
 
     public User() {}
 
@@ -54,4 +55,10 @@ public class User {
     public void setPassword(String password) {
         this.password = Password.hash(password);
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) { this.url = url;}
 }

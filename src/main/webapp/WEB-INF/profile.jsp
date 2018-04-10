@@ -11,6 +11,18 @@
 
     <div class="container">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
+        <c:choose>
+        <c:when test="${sessionScope.user.url} == null">
+            <div style="width: 100px; height: 100px">
+                <img style="width: 100%" src="https://upload.wikimedia.org/wikipedia/commons/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg" alt="">
+            </div>
+        </c:when>
+        <c:otherwise>
+            <div style="width: 100px; height: 100px">
+                <img style="width: 100%" src="${sessionScope.user.url}" alt="">
+            </div>
+            </c:otherwise>
+        </c:choose>
         <h2>Here are your ads:</h2>
         <c:forEach var="ad" items="${userAds}">
             <div class="col-md-6">

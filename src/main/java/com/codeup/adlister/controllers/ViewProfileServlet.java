@@ -34,11 +34,6 @@ public class ViewProfileServlet extends HttpServlet {
         Ad ad = new Ad(id, user.getId(), title, description);
         DaoFactory.getAdsDao().updateAd(ad);
 
-        System.out.println(title);
-        System.out.println(description);
-        System.out.println(id);
-        System.out.println(user.getId());
-
         response.sendRedirect("/profile");
     }
 }
