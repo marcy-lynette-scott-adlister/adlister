@@ -2,6 +2,7 @@ package com.codeup.adlister.dao;
 
 import com.codeup.adlister.Config;
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.io.FileInputStream;
@@ -88,5 +89,20 @@ public class MySQLAdsDao implements Ads {
             ads.add(extractAd(rs));
         }
         return ads;
+    }
+    @Override
+    public Ad findByAdId (Long id) {
+        String query = "SELECT * FROM ads WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+//            System.out.println(extractAd(stmt.executeQuery()));
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            System.out.println(rs);
+            return extractAd(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a ad by ID", e);
+        }
     }
 }
