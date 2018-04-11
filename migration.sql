@@ -27,12 +27,14 @@ CREATE TABLE categories (
   PRIMARY KEY (id)
 );
 
+DROP table category_ads;
 CREATE TABLE category_ads (
   category_id INT UNSIGNED NOT NULL,
   ad_id INT UNSIGNED NOT NULL,
   FOREIGN KEY (category_id) REFERENCES categories(id),
   FOREIGN KEY (ad_id) REFERENCES ads(id)
-);
+  on DELETE CASCADE 
+  );
 
 alter table users ADD unique (username);
 ALTER TABLE users ADD url VARCHAR(255);

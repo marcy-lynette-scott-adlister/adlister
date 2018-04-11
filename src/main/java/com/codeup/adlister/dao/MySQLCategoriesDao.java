@@ -43,5 +43,21 @@ public class MySQLCategoriesDao implements Categories {
         }
     }
 
+    @Override
+    public String categoryName(Long ad_id) {
+        try{
+            String query = "Select category from categories as c join category_ads as ca on c.id = ca.category_id where ca.ad_id = ?";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, ad_id);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        }
+        catch(SQLException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException("Error finding category.", e);
+        }
+    }
+
 
 }
