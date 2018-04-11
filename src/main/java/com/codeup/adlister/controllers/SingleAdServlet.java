@@ -14,7 +14,13 @@ import java.io.IOException;
 public class SingleAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Ad ad = DaoFactory.getAdsDao().all().get(id-1);
+        Ad ad = new Ad();
+        for (Ad single: DaoFactory.getAdsDao().all()) {
+            if (single.getId() == id){
+                ad = single;
+            }
+        }
+
         request.setAttribute("ad", ad);
         request.getRequestDispatcher("/WEB-INF/ads/showad.jsp").forward(request, response);
 
