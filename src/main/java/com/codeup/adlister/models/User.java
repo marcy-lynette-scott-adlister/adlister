@@ -17,11 +17,12 @@ public class User {
         setPassword(password);
     }
 
-    public User(long id, String username, String email, String password) {
+    public User(long id, String username, String email, String password, String url) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.url = url;
     }
 
     public long getId() {
