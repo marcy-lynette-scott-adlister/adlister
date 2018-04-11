@@ -1,11 +1,41 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/ads">Adlister</a>
-        </div>
-            <ul class="nav navbar-nav navbar-right">
+<header>
+
+
+    <div class="logo"><a href="/index.jsp"><img src="/images/logo.png" alt=""></a></div>
+    <div class="nav-bar">
+        <nav>
+
+<%--Desktop Nav--%>
+                    <ul class="menu-bar nav-pad">
+                        <li><a href="/ads">Game Lister</a></li>
+                        <c:if test="${sessionScope.user != null}">
+                            <li><a href="/profile">Profile</a></li>
+                            <li><a href="/logout">Logout</a></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.user == null}">
+                            <li><a href="/register">Register</a></li>
+                            <li><a href="/ads/create">Create Ad</a></li>
+                        </c:if>
+
+                    </ul>
+
+<%--Mobile Nav--%>
+
+    <div class="hamburger">
+
+        <div id="menuToggle">
+
+            <input type="checkbox" />
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+
+                <li><a href="/ads">Game Lister</a></li>
                 <c:if test="${sessionScope.user != null}">
                     <li><a href="/profile">Profile</a></li>
                     <li><a href="/logout">Logout</a></li>
@@ -14,12 +44,14 @@
                     <li><a href="/register">Register</a></li>
                     <li><a href="/login">Login</a></li>
                 </c:if>
-                    <li style="margin-top: .5em; margin-right: .5em;">
-                        <form action="/ads/search" method="get" class="form-inline my-2 my-lg-0">
-                        <input type="text" name="search" placeholder="Search Ads" class="form-control mr-sm-2">
-                        </form>
-                    </li>
+
             </ul>
-    </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+        </div>
+    </div>
+
+        </nav>
+    </div>
+</header>
+<div class="search"><form action="/ads/search" method="get">
+    <input type="text" name="search" placeholder="Search All Ads">
+</form></div>
