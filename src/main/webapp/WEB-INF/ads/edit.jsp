@@ -15,6 +15,7 @@
             <form action="/profile" method="post">
                 <input type="text" name="Edit" value="<c:out value="${ad.title}" />">
                 <textarea name="Description" value="Description" id="" cols="30" rows="10">${ad.description}</textarea>
+                <input type="text" name="category" value="<c:out value="${ad.category}"/>">
                 <input type="submit" value="Update">
                 <input type="hidden" value="${ad.id}" name="Update">
             </form>
