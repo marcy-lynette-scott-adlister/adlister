@@ -5,6 +5,7 @@ import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLUsersDao implements Users {
@@ -23,6 +24,24 @@ public class MySQLUsersDao implements Users {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, username);
             return extractUser(stmt.executeQuery());
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a user by username", e);
+        }
+    }
+
+    @Override
+    public List<User> editUsernameCheck(String username) {
+        List<User> userList = new ArrayList<>();
+        String query = "SELECT * FROM users WHERE username = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                userList.add(extractUser(rs));
+            }
+            return userList;
+
         } catch (SQLException e) {
             throw new RuntimeException("Error finding a user by username", e);
         }
@@ -57,6 +76,40 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+    @Override
+    public List<User> editEmailCheck(String email) {
+        List<User> userList = new ArrayList<>();
+        String query = "SELECT * FROM users WHERE email = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                userList.add(extractUser(rs));
+            }
+            return userList;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a user by username", e);
+        }
+    }
+
+    @Override
+    public void updateUser(User user) {
+        String query = "UPDATE users set username = ?, email = ?, url = ? where id = ?";
+        try{
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getUrl());
+            stmt.setLong(4, user.getId());
+            stmt.executeUpdate();
+        }
+        catch (SQLException e){
+            throw new RuntimeException("Error updating user.", e);
+        }
+    }
+
     private User extractUser(ResultSet rs) throws SQLException {
         if (! rs.next()) {
             return null;
@@ -65,7 +118,8 @@ public class MySQLUsersDao implements Users {
             rs.getLong("id"),
             rs.getString("username"),
             rs.getString("email"),
-            rs.getString("password")
+            rs.getString("password"),
+            rs.getString("url")
         );
     }
 

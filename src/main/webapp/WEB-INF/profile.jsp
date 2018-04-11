@@ -12,8 +12,10 @@
     <div class="container">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
             <div style="width: 100px; height: 100px">
-                <img style="width: 100%" src="${user.url}" alt="">
+                <img style="width: 100%" src="${userUrl}" alt="">
             </div>
+        <p>Email: ${sessionScope.user.email}</p>
+        <a href="/edit">Change Profile Settings</a>
         <h2>Here are your ads:</h2>
         <c:forEach var="ad" items="${userAds}">
             <div class="col-md-6">

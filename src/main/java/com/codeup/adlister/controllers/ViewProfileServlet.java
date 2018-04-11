@@ -20,10 +20,12 @@ public class ViewProfileServlet extends HttpServlet {
             return;
         }
         User loggedInUser = (User)request.getSession().getAttribute("user");
-        if(loggedInUser.getUrl() == null){
-            loggedInUser.setUrl("https://upload.wikimedia.org/wikipedia/commons/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg");
+        String userUrl = loggedInUser.getUrl();
+        if(userUrl == null){
+            userUrl = "https://upload.wikimedia.org/wikipedia/commons/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg";
         }
         List<Ad> userAds = DaoFactory.getAdsDao().userAds(loggedInUser.getId());
+        request.setAttribute("userUrl", userUrl);
         request.setAttribute("userAds", userAds);
 
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
