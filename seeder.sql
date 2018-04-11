@@ -8,3 +8,18 @@ INSERT INTO ads(user_id, title, description) VALUES
   (3, 'Antique Cameras', 'Kodak-Brownie Starflex Camera with Kodak Rotary Flasholder uses 127 Film, Kodak Duaflex II, about 1950-1954, uses 620 Film, Kodak Brownie No.2 Model C. About 1911, uses 116 Film.'),
   (3, 'Canon EOS Rebel T4i DSLR with 18-55mm EF-S IS II Lens', 'Canon is proud to introduce its most sophisticated Rebel ever--the EOS Rebel T4i DSLR! Built to make advanced photography simple and fun, the new Rebel T4i delivers phenomenal image quality, high performance, and fast, intuitive operation. This EOS Rebel amps up the speed with the powerful DIGIC 5 Image Processor that helps make high-speed continuous shooting of up to 5.0 fps possible--great for capturing fast action.');
 
+insert into categories(category)
+    VALUES ('RPG'),
+      ('Puzzle'),
+      ('Fighting'),
+      ('Shooter'),
+      ('Simulation'),
+      ('Strategy'),
+      ('Racing'),
+      ('Sports'),
+      ('Party Game'),
+      ('Trivia');
+
+update ads
+set category = 'Simulation' where id = 1;
+
