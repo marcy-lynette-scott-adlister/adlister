@@ -29,7 +29,7 @@
         <input type="submit" class="btn btn-primary btn-block">
     </form>
 
-    <form action="#" method="post">
+    <form action="/update" method="post">
         <div class="form-group">
             <label>Old Password
                 <input name="old_password" class="form-control" type="password">
@@ -46,6 +46,10 @@
             </label>
         </div>
         <input type="submit" class="btn btn-primary btn-block">
+    </form>
+    <form action="/delete" method="post">
+        <input type="hidden" name="user_id" value="${session.Scope.user.id}">
+        <input type="submit" class="btn btn-warning btn-block" value="Delete Account">
     </form>
 </div>
 </body>

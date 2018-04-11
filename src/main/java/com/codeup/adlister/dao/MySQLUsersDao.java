@@ -30,24 +30,6 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public List<User> editUsernameCheck(String username) {
-        List<User> userList = new ArrayList<>();
-        String query = "SELECT * FROM users WHERE username = ?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1, username);
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
-                userList.add(extractUser(rs));
-            }
-            return userList;
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Error finding a user by username", e);
-        }
-    }
-
-    @Override
     public Long insert(User user) {
         String query = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
         try {
@@ -77,24 +59,6 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public List<User> editEmailCheck(String email) {
-        List<User> userList = new ArrayList<>();
-        String query = "SELECT * FROM users WHERE email = ?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1, email);
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
-                userList.add(extractUser(rs));
-            }
-            return userList;
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Error finding a user by username", e);
-        }
-    }
-
-    @Override
     public void updateUser(User user) {
         String query = "UPDATE users set username = ?, email = ?, url = ? where id = ?";
         try{
@@ -107,6 +71,32 @@ public class MySQLUsersDao implements Users {
         }
         catch (SQLException e){
             throw new RuntimeException("Error updating user.", e);
+        }
+    }
+    @Override
+    public void updateUserPassword(User user) {
+        String query = "UPDATE users set password = ? where id = ?";
+        try{
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, user.getPassword());
+            stmt.setLong(2, user.getId());
+            stmt.executeUpdate();
+        }
+        catch (SQLException e){
+            throw new RuntimeException("Error updating user.", e);
+        }
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        String query = "DELETE FROM users where id = ?";
+        try{
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e){
+            throw new RuntimeException("Error deleting user.", e);
         }
     }
 

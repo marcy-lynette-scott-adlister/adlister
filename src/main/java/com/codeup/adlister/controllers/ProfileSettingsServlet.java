@@ -36,23 +36,23 @@ public class ProfileSettingsServlet extends HttpServlet {
         String url = request.getParameter("profilePic").trim();
 
         //check to see if username or email already exists in database and that form entries are not empty
-        List<User> usernameCheck = DaoFactory.getUsersDao().editUsernameCheck(username);
-        List<User> useremailCheck = DaoFactory.getUsersDao().editEmailCheck(email);
+        User usernameCheck = DaoFactory.getUsersDao().findByUsername(username);
+        User useremailCheck = DaoFactory.getUsersDao().findByEmail(email);
 
         // validate input
         boolean inputHasErrors = username.isEmpty()
             || email.isEmpty()
-            || usernameCheck.size() > 1
-            || useremailCheck.size() > 1;
+            || (usernameCheck != null && !user.getUsername().equals(usernameCheck.getUsername()))
+            || (useremailCheck != null && !user.getEmail().equals(useremailCheck.getEmail()));
 
         if (inputHasErrors) {
             response.sendRedirect("/edit");
             return;
         }
-        if (useremailCheck.size() == 0){
+        if (useremailCheck == null){
             user.setEmail(email);
         }
-        if (usernameCheck.size() == 0) {
+        if (usernameCheck == null) {
             user.setUsername(username);
         }
         if(url.isEmpty()){

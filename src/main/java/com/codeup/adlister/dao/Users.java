@@ -9,6 +9,6 @@ public interface Users {
     Long insert(User user);
     User findByEmail(String email);
     void updateUser(User user);
-    List<User> editUsernameCheck(String username);
-    List<User> editEmailCheck(String email);
+    void updateUserPassword(User user);
+    void deleteUser(Long id);
 }
