@@ -9,7 +9,19 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div class="container">
-        <h1>Welcome to the Adlister!</h1>
+        <h1>Welcome to the OP Game Lister!</h1>
+    </div>
+
+    <div class="banner">
+        <div class="banner-title-wrap">
+
+        </div>
+        <%--<div class="symbol-wrap">--%>
+            <%--<div class="symbol"><img src="images/logo.png" alt=""></div>--%>
+        <%--</div>--%>
+            <div class="banner-name">Buy Games</div>
+        <div class="banner-name2">Sell Games</div>
+        <div class="banner-name3">Never Get Pwned Again!</div>
     </div>
 </body>
 </html>
