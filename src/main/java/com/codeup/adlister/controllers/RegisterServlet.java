@@ -22,16 +22,29 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
 
+        request.getSession().setAttribute("username", username);
+        request.getSession().setAttribute("email", email);
+
         User usernameCheck = DaoFactory.getUsersDao().findByUsername(username);
         User useremailCheck = DaoFactory.getUsersDao().findByEmail(email);
 
         // validate input
         boolean inputHasErrors = username.isEmpty()
             || email.isEmpty()
-            || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
+            || password.isEmpty();
+        boolean passwordsMatch = password.equals(passwordConfirmation);
 
-        if (inputHasErrors || usernameCheck != null || useremailCheck != null) {
+        if(inputHasErrors){
+            request.getSession().setAttribute("message", "All fields required!");
+        } else if (usernameCheck != null) {
+            request.getSession().setAttribute("message", "Username already taken!");
+        } else if (useremailCheck != null) {
+            request.getSession().setAttribute("message", "There is already an account with that email!");
+        } else if(!passwordsMatch) {
+            request.getSession().setAttribute("message", "Passwords don't match!");
+        }
+
+        if (inputHasErrors || usernameCheck != null || useremailCheck != null || !passwordsMatch) {
             response.sendRedirect("/register");
             return;
         }

@@ -28,6 +28,13 @@ public class UpdatePasswordServlet extends HttpServlet {
                 && !newPassword.isEmpty()
                 && !newPasswordConfirmation.isEmpty()
                 && newPassword.equals(newPasswordConfirmation);
+        if(newPassword.isEmpty() || newPasswordConfirmation.isEmpty()) {
+            request.getSession().setAttribute("message", "All password fields required!");
+        } else if(!Password.check(oldPassword, user.getPassword())) {
+            request.getSession().setAttribute("message", "Password not correct!");
+        } else if (!newPassword.equals(newPasswordConfirmation)) {
+            request.getSession().setAttribute("message", "Passwords do not match!");
+        }
 
         if(!validAttempt){
             response.sendRedirect("/edit");

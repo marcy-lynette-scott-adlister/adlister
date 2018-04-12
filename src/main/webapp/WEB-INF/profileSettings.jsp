@@ -28,6 +28,7 @@
         </div>
         <input type="submit" class="btn btn-primary btn-block">
     </form>
+        <jsp:include page="/WEB-INF/partials/messages.jsp" />
 
     <form action="/update" method="post">
         <div class="form-group">
