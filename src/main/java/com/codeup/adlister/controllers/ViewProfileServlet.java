@@ -26,10 +26,16 @@ public class ViewProfileServlet extends HttpServlet {
             userUrl = "https://upload.wikimedia.org/wikipedia/commons/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg";
         }
         List<Ad> userAds = DaoFactory.getAdsDao().userAds(loggedInUser.getId());
+
+        // assuming you have added a categoryName property to the Ad model...
+        // iterate over userAds and for each Ad object, setCategoryName(whateverMethodGetsTheCategoryName())
+
+//        userAds.forEach(ad -> {
+//            DaoFactory.getCategoriesDao().categoryName(ad.getCategory());
+//        });
+
         request.setAttribute("userUrl", userUrl);
         request.setAttribute("userAds", userAds);
-
-
 
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
     }
