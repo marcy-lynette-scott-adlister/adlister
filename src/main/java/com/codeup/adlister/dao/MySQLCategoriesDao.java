@@ -59,5 +59,18 @@ public class MySQLCategoriesDao implements Categories {
         }
     }
 
+    @Override
+    public void updateCategory(Category category) {
+        String query = "UPDATE categories set category = ?";
+        try{
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, category.getCategory());
+            stmt.executeUpdate();
+        }
+        catch (SQLException e){
+            throw new RuntimeException("Error updating category.", e);
+        }
+    }
+
 
 }
