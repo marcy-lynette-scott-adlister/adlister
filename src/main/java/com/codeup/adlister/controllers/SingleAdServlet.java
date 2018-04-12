@@ -25,10 +25,8 @@ public class SingleAdServlet extends HttpServlet {
         String category = DaoFactory.getCategoriesDao().categoryName(id);
         request.setAttribute("category", category);
 
-
-
-
         request.setAttribute("ad", ad);
+        request.setAttribute("user", DaoFactory.getUsersDao().findByUserId(ad.getUserId()));
         request.getRequestDispatcher("/WEB-INF/ads/showad.jsp").forward(request, response);
 
     }
