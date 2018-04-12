@@ -12,6 +12,7 @@
 <div class="container">
     <h1><c:out value="${ad.title}"/></h1>
     <p><c:out value="${ad.description}"/></p>
+    <p><c:out value="${category}"/></p>
 </div>
 
 </body>
