@@ -18,6 +18,7 @@ public class EditServlet extends HttpServlet {
             Ad ad = DaoFactory.getAdsDao().findByAdId(id);
             request.setAttribute("ad", ad);
 
+
         request.getRequestDispatcher("/WEB-INF/ads/edit.jsp").forward(request, response);
     }
 

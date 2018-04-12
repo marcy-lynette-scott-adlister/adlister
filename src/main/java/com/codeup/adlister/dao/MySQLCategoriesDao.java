@@ -16,7 +16,7 @@ public class MySQLCategoriesDao implements Categories {
     @Override
     public Long insertCategory(Category category) {
         try{
-            String insertQuery = "INSERT INTO categories(category) VALUES (?)";
+            String insertQuery = "INSERT INTO categories(category) VALUES (?) ";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, category.getCategory());
             stmt.executeUpdate();
@@ -32,12 +32,10 @@ public class MySQLCategoriesDao implements Categories {
     public void insertCatAndAdId(Long category_id, Long id) {
         try{
             String query = "Insert into category_ads(category_id,ad_id) values(?,?)";
-            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setLong(1, category_id);
             stmt.setLong(2, id);
             stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
         } catch (SQLException e) {
             throw new RuntimeException("Error inserting id's.", e);
         }
@@ -50,8 +48,12 @@ public class MySQLCategoriesDao implements Categories {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setLong(1, ad_id);
             ResultSet rs = stmt.executeQuery();
-            rs.next();
-            return rs.getString(1);
+            if (rs.next()){
+                return rs.getString(1);
+            }
+            else {
+                return "";
+            }
         }
         catch(SQLException e) {
             System.out.println(e.getMessage());
@@ -60,15 +62,50 @@ public class MySQLCategoriesDao implements Categories {
     }
 
     @Override
-    public void updateCategory(Category category) {
-        String query = "UPDATE categories set category = ?";
+    public void updateCategory(String category, Long ad_id) {
+        String query = "UPDATE category_ads ca, (select category, id from categories) c set ca.category_id = c.id where c.category = ? and ca.ad_id = ?";
         try{
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1, category.getCategory());
+            stmt.setString(1, category);
+            stmt.setLong(2, ad_id);
             stmt.executeUpdate();
         }
         catch (SQLException e){
             throw new RuntimeException("Error updating category.", e);
+        }
+    }
+
+    @Override
+    public Category checkCategoryExists(String category) {
+        String query = "SELECT * FROM categories WHERE category = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, category);
+            ResultSet rs = stmt.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+            else{
+                return new Category(
+                        rs.getLong("id"),
+                        rs.getString("category")
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a user by username", e);
+        }
+    }
+
+    @Override
+    public boolean findCategoryByAdId(Long ad_id) {
+        String query = "SELECT category_id from category_ads WHERE ad_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, ad_id);
+            ResultSet rs = stmt.executeQuery();
+            return(rs.next());
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding an ad by ID", e);
         }
     }
 

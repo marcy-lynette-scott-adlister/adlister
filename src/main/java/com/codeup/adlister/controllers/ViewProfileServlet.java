@@ -29,6 +29,10 @@ public class ViewProfileServlet extends HttpServlet {
         request.setAttribute("userUrl", userUrl);
         request.setAttribute("userAds", userAds);
 
+
+
+
+
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
     }
 
@@ -39,6 +43,21 @@ public class ViewProfileServlet extends HttpServlet {
         User user = (User)request.getSession().getAttribute("user");
         Ad ad = new Ad(id, user.getId(), title, description);
         DaoFactory.getAdsDao().updateAd(ad);
+        String category = request.getParameter("category");
+        Category category1 = new Category(category);
+
+        if (DaoFactory.getCategoriesDao().checkCategoryExists(category) == null){
+            Long cat_id = DaoFactory.getCategoriesDao().insertCategory(category1);
+            DaoFactory.getCategoriesDao().insertCatAndAdId(cat_id, id);
+        }
+        else if (DaoFactory.getCategoriesDao().findCategoryByAdId(id)) {
+            DaoFactory.getCategoriesDao().updateCategory(category, id);
+        }
+        else {
+            Long existCat_id = DaoFactory.getCategoriesDao().checkCategoryExists(category).getId();
+            DaoFactory.getCategoriesDao().insertCatAndAdId(existCat_id, id);
+        }
+
 
         response.sendRedirect("/profile");
     }
