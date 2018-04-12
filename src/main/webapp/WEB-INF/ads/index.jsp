@@ -9,16 +9,22 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<div class="container">
+<container>
     <h1>Here Are all the ads!</h1>
-
-    <c:forEach var="ad" items="${ads}">
-        <div class="ad-wrap">
-            <a href="/showad?id=${ad.id}"><h2>${ad.title}</h2></a>
-            <p>${ad.description}</p>
-        </div>
-    </c:forEach>
-</div>
+    <div class="ad-module">
+        <c:forEach var="ad" items="${ads}">
+                <div class="ad-wrap">
+                    <div class="ad-picture">
+                        <%--<img style="width: 100%" src="${ad.url}" alt="">--%>
+                            <img style="width: 100%" src="/images/ads/1.jpg" alt="">
+                    </div>
+                        <a href="/showad?id=${ad.id}"><h2>${ad.title}</h2></a>
+                        <p class="ad-paragraph">${ad.description}</p>
+                    <p class="read-more"><a href="/showad?id=${ad.id}">Read More <i class="fas fa-angle-double-right"></i></a></p>
+                </div>
+        </c:forEach>
+    </div>
+</container>
 
 </body>
 </html>
