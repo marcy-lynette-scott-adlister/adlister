@@ -44,7 +44,13 @@ public class ProfileSettingsServlet extends HttpServlet {
             || email.isEmpty()
             || (usernameCheck != null && !user.getUsername().equals(usernameCheck.getUsername()))
             || (useremailCheck != null && !user.getEmail().equals(useremailCheck.getEmail()));
-
+        if(username.isEmpty() || email.isEmpty()) {
+            request.getSession().setAttribute("message", "All fields required!");
+        } else if(usernameCheck != null && !user.getUsername().equals(usernameCheck.getUsername())) {
+            request.getSession().setAttribute("message", "Username already taken.");
+        } else if(useremailCheck != null && !user.getEmail().equals(useremailCheck.getEmail())) {
+            request.getSession().setAttribute("message", "Email already taken.");
+        }
         if (inputHasErrors) {
             response.sendRedirect("/edit");
             return;
