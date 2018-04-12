@@ -31,6 +31,7 @@
                 </form>
             </div>
         </c:forEach>
+        <c:forEach var="category" items=""
     </div>
 
 </body>

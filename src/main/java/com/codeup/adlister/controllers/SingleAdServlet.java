@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
 @WebServlet(name = "SingleAdServlet", urlPatterns = "/showad")
 public class SingleAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,6 +24,8 @@ public class SingleAdServlet extends HttpServlet {
         }
         String category = DaoFactory.getCategoriesDao().categoryName(id);
         request.setAttribute("category", category);
+
+
 
 
         request.setAttribute("ad", ad);
