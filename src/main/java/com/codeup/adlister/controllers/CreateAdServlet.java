@@ -25,16 +25,29 @@ public class CreateAdServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        Category category = new Category(request.getParameter("category"));
         User user = (User) request.getSession().getAttribute("user");
+
+        boolean inputHasErrors = title.isEmpty() || description.isEmpty();
+        boolean titleLengthCheck = title.length() > 240;
+        boolean descriptionLengthCheck = title.length() > 1000;
+
+
+        if(inputHasErrors) {
+            request.getSession().setAttribute("message", "All fields required!");
+        }
+
         Ad ad = new Ad(
             user.getId(),
-            request.getParameter("title"),
-            request.getParameter("description")
+            title,
+            description
         );
         Long id = DaoFactory.getAdsDao().insert(ad);
-        Category category = new Category(request.getParameter("category"));
         Long category_id = DaoFactory.getCategoriesDao().insertCategory(category);
         DaoFactory.getCategoriesDao().insertCatAndAdId(category_id, id);
         response.sendRedirect("/ads");
     }
+
 }
