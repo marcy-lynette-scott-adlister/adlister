@@ -16,6 +16,7 @@ public class EditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             Long id = Long.parseLong(request.getParameter("Edit"));
             Ad ad = DaoFactory.getAdsDao().findByAdId(id);
+            ad.setCategory(DaoFactory.getCategoriesDao().categoryName(ad.getId()));
             request.setAttribute("ad", ad);
         String url = "";
         if(ad.getUrl() != "./images/ads/1.jpg") {
