@@ -45,9 +45,9 @@ public class ViewProfileServlet extends HttpServlet {
         String description = request.getParameter("Description");
         Long id = Long.parseLong(request.getParameter("Update"));
         User user = (User)request.getSession().getAttribute("user");
-//        String url = request.getParameter("adPic");
-//        Ad ad = new Ad(id, user.getId(), title, description, url);
-//        DaoFactory.getAdsDao().updateAd(ad);
+        String url = request.getParameter("adPic");
+        Ad ad = new Ad(id, user.getId(), title, description, url);
+        DaoFactory.getAdsDao().updateAd(ad);
         String category = request.getParameter("category");
         Category category1 = new Category(category);
 
