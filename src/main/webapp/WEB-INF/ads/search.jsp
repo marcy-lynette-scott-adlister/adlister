@@ -9,15 +9,21 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<div class="container">
+<container>
+    <div class="ad-module">
+        <c:forEach var="ad" items="${searchResults}">
+            <div class="ad-wrap">
+                <div class="ad-picture">
+                    <img src="<c:out value='${ad.url}'/>" alt="">
+                </div>
 
-    <c:forEach var="ad" items="${searchResults}">
-        <div class="col-md-6">
-            <a href="/showad?id=${ad.id}"><h2>${ad.title}</h2></a>
-            <p>${ad.description}</p>
-        </div>
-    </c:forEach>
-</div>
-
+                <a href="/showad?id=${ad.id}"><h2>${ad.title}</h2></a>
+                <p class="ad-paragraph">${ad.description}</p>
+                <p class="ad-paragraph"><c:out value="Category: ${ad.category}"/></p>
+            </div>
+        </c:forEach>
+    </div>
+</container>
+<jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
 </html>
