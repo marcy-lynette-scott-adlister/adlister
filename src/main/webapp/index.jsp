@@ -23,5 +23,6 @@
         <div class="banner-name2">Sell Games</div>
         <div class="banner-name3">Never Get Pwned Again!</div>
     </div>
+    <jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
 </html>
