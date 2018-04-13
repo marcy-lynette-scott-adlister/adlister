@@ -8,20 +8,26 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <div class="container">
-        <h1>Please Log In</h1>
-        <form action="/login" method="POST">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input id="username" name="username" class="form-control" type="text" value='<c:out value="${username}"/>'>
+    <container>
+        <div class="clear-grid">
+            <h1>Please Log In</h1>
+
+            <div class="big-form-wrap">
+                <form action="/login" method="POST">
+
+                        <label for="username">Username</label>
+                        <input id="username" name="username" type="text" value='<c:out value="${username}"/>'>
+
+
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password">
+
+                    <jsp:include page="/WEB-INF/partials/messages.jsp" />
+                    <input class="big-form-wrap-button" type="submit" value="Log In">
+                </form>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password" name="password" class="form-control" type="password">
-            </div>
-            <jsp:include page="/WEB-INF/partials/messages.jsp" />
-            <input type="submit" class="btn btn-primary btn-block" value="Log In">
-        </form>
-    </div>
+
+        </div>
+    </container>
 </body>
 </html>
