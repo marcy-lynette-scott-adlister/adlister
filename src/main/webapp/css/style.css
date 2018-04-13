@@ -309,6 +309,38 @@ width: 95%;
     margin-top: 0.2em;
     background: white;
 }
+.ad-show-wrap {
+    width: 70%;
+    margin: 2em auto 1% auto;
+    border: black solid .1em;
+    border-radius: 1em;
+    box-sizing: border-box;
+    padding: 1em;
+    height: 20em;
+    background-color: #fff;
+}
+.ad-show-pic-wrap {
+    width: 40%;
+    float: left;
+    margin: 5%;
+}
+.ad-show-pic {
+    width: 15em;
+    height: 15em;
+    border-radius: 8em;
+    overflow: hidden;
+}
+.ad-show-pic img {
+    width: 100%;
+}
+.description-wrap {
+    width: 55%;
+    margin-left: 40%;
+    margin-top: 8%;
+}
+.description-wrap p{
+
+}
 .read-more {
     color: #f47721;
 }
