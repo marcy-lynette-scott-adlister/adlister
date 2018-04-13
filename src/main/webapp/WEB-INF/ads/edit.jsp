@@ -13,9 +13,18 @@
         <div class="col-md-6">
 
             <form action="/profile" method="post">
-                <input type="text" name="Edit" value="<c:out value="${ad.title}" />">
-                <textarea name="Description" value="Description" id="" cols="30" rows="10">${ad.description}</textarea>
-                <input type="text" name="category" value="<c:out value="${category}" />">
+                <label>Title:
+                    <input type="text" name="Edit" value="<c:out value="${ad.title}" />">
+                </label>
+                <label>Description:
+                    <textarea name="Description" value="Description" id="" cols="30" rows="10"><c:out value="${ad.description}"/></textarea>
+                </label>
+                <label>Image:
+                    <input name="adPic" class="form-control" type="text" value=${url}>
+                </label>
+                <label>Category:
+                    <input type="text" name="category" value="<c:out value="${category}" />">
+                </label>
                 <input type="submit" value="Update">
                 <input type="hidden" value="${ad.id}" name="Update">
             </form>

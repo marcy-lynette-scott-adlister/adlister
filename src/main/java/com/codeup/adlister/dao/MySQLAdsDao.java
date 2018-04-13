@@ -75,11 +75,16 @@ public class MySQLAdsDao implements Ads {
     }
 
     private Ad extractAd(ResultSet rs) throws SQLException {
+        String url = rs.getString("url");
+        if(url == null){
+            url = "./images/ads/1.jpg";
+        }
         return new Ad(
             rs.getLong("id"),
             rs.getLong("user_id"),
             rs.getString("title"),
-            rs.getString("description")
+            rs.getString("description"),
+            url
         );
     }
 
@@ -106,12 +111,17 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public void updateAd(Ad ad) {
-        String query = "UPDATE ads set title = ?, description = ? where id = ?";
+        String query = "UPDATE ads set title = ?, description = ?, url = ? where id = ?";
+        String url = ad.getUrl();
+        if(ad.getUrl().trim().equals("")){
+            url = null;
+        }
         try{
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, ad.getTitle());
             stmt.setString(2, ad.getDescription());
-            stmt.setLong(3, ad.getId());
+            stmt.setString(3, url);
+            stmt.setLong(4, ad.getId());
             stmt.executeUpdate();
 
         }

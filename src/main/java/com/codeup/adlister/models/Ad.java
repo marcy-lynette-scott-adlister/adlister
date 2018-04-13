@@ -6,7 +6,15 @@ public class Ad {
     private String title;
     private String description;
     private String category;
+    private String url;
 
+    public Ad(long id, long userId, String title, String description, String url) {
+        this.id = id;
+        this.userId = userId;
+        this.title = title;
+        this.description = description;
+        this.url = url;
+    }
     public Ad(long id, long userId, String title, String description) {
         this.id = id;
         this.userId = userId;
@@ -62,5 +70,13 @@ public class Ad {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
