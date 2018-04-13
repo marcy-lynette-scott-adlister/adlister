@@ -8,28 +8,37 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <div class="container">
+    <container>
         <h1>Create a new Ad</h1>
-        <form action="/ads/create" method="post">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input id="title" name="title" class="form-control" type="text" value='<c:out value="${title}"/>'>
+
+        <div class="clear-grid">
+
+            <div class="big-form-wrap">
+                <form action="/ads/create" method="post">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input id="title" name="title" type="text" value='<c:out value="${title}"/>'>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" type="text"><c:out value="${description}"/></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <input id="category" name="category" type="text" value='<c:out value="${category}"/>'>
+                    </div>
+                    <div class="form-group">
+                        <label for="url">Image</label>
+                        <input id="url" name="url" type="text" value='<c:out value="${url}"/>'>
+                    </div>
+                    <jsp:include page="/WEB-INF/partials/messages.jsp" />
+                    <input type="submit" class="big-form-wrap-button">
+                </form>
             </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea id="description" name="description" class="form-control" type="text"><c:out value="${description}"/></textarea>
-            </div>
-            <div class="form-group">
-                <label for="category">Category</label>
-                <input id="category" name="category" class="form-control" type="text" value='<c:out value="${category}"/>'>
-            </div>
-            <div class="form-group">
-                <label for="url">Image</label>
-                <input id="url" name="url" class="form-control" type="text" value='<c:out value="${url}"/>'>
-            </div>
-            <jsp:include page="/WEB-INF/partials/messages.jsp" />
-            <input type="submit" class="btn btn-block btn-primary">
-        </form>
-    </div>
+
+        </div>
+
+    </container>
+<jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
 </html>
