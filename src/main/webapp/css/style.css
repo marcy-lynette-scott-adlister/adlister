@@ -324,7 +324,6 @@ width: 95%;
     color: #f47721;
 }
 .big-form-wrap {
-    height: 40em;
     width: 100%;
 }
 .big-form-wrap label{
@@ -352,7 +351,7 @@ width: 95%;
 }
 .big-form-wrap textarea {
     width: 80%;
-    height: 2em;
+    height: 4em;
     font-size: 1.2em;
     margin: 0 10% 1em 10%;
     float: none;
