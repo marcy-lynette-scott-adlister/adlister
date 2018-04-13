@@ -9,30 +9,50 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-    <div class="container">
-        <h1>Welcome, ${sessionScope.user.username}!</h1>
-            <div style="width: 100px; height: 100px">
-                <img style="width: 100%" src="${userUrl}" alt="">
+    <container>
+        <div class="clear-grid">
+            <h1>Welcome, ${sessionScope.user.username}!</h1>
+            <div class="profile-pic-wrap">
+                <div class="profile-pic">
+                    <img src="${userUrl}" alt="">
+                </div>
             </div>
-        <p>Email: ${sessionScope.user.email}</p>
-        <a href="/edit">Change Profile Settings</a>
-        <h2>Here are your ads:</h2>
-        <c:forEach var="ad" items="${userAds}">
-            <div class="col-md-6">
-                <a href="/showad?id=${ad.id}"><h2>${ad.title}</h2></a>
-                <p>${ad.description}</p>
-                <p>Category: ${ad.category}</p>
-                <form action="/ads/edit" method="post">
-                <input type="hidden" name="Edit" value="${ad.id}">
-                    <input type="submit" value="Edit">
-                </form>
-                <form action="/ads/delete" method="post">
-                <input type="hidden" name="Delete" value="${ad.id}">
-                    <input type="submit" value="Delete">
-                </form>
+
+            <div class="profile-info">
+                <p>Email: ${sessionScope.user.email}</p>
+                <p><a href="/edit"><i class="far fa-edit"></i> Change Profile Settings</a></p>
             </div>
-        </c:forEach>
-    </div>
+
+            <div class="line"></div>
+
+            <h2 class="profile-subheader">Your Ads:</h2>
+
+
+                <c:forEach var="ad" items="${userAds}">
+
+                    <div class="profile-ad-wrap">
+                        <div class="profile-ad-picture"><img src="<c:out value='${ad.url}'/>" alt=""></div>
+                        <div class="profile-ad-info">
+                            <a href="/showad?id=${ad.id}"><h2>${ad.title}</h2></a>
+                            <p>${ad.description}</p>
+                            <p class="profile-ad-paragraph">Category: ${ad.category}</p>
+                            <form action="/ads/edit" method="post">
+                            <input type="hidden" name="Edit" value="${ad.id}">
+                                <input type="submit" value="Edit">
+                            </form>
+                            <form action="/ads/delete" method="post">
+                            <input type="hidden" name="Delete" value="${ad.id}">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </div>
+
+                    </div>
+
+                </c:forEach>
+        </div>
+
+
+    </container>
 
 </body>
 </html>
