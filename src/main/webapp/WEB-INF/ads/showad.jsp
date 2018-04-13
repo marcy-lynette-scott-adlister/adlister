@@ -9,16 +9,21 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<div class="container">
-    <h1><c:out value="${ad.title}"/></h1>
-    <div class="ad-picture">
-        <%--<img style="width: 100%" src="${ad.url}" alt="">--%>
-        <img style="width: 100%" src="<c:out value='${ad.url}'/>" alt="">
+<container>
+    <div class="clear-grid">
+        <h1><c:out value="${ad.title}"/></h1>
+        <div class="profile-pic-wrap">
+            <div class="profile-pic">
+                <img src="<c:out value='${ad.url}'/>" alt="">
+            </div>
+        </div>
+        <div>
+            <p><c:out value="${ad.description}"/></p>
+            <p>Seller: <a href="/seller?username=<c:out value='${user.username}'/>"><c:out value="${user.username}"/></a></p>
+            <p>Category: <c:out value="${category}"/></p>
+        </div>
     </div>
-    <p><c:out value="${ad.description}"/></p>
-    <p>Seller: <a href="/seller?username=<c:out value='${user.username}'/>"><c:out value="${user.username}"/></a></p>
-    <p>Category: <c:out value="${category}"/></p>
-</div>
+</container>
 <jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
 </html>
