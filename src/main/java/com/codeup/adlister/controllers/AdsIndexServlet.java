@@ -15,14 +15,15 @@ import java.util.List;
 @WebServlet(name = "controllers.AdsIndexServlet", urlPatterns = "/ads")
 public class AdsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("ads", DaoFactory.getAdsDao().all());
 
         List<Ad> adCats = DaoFactory.getAdsDao().all();
-        for (Ad ad : adCats) {
-            request.setAttribute("category", DaoFactory.getCategoriesDao().categoryName(ad.getId()));
+        adCats.forEach(ad -> {
 
-        }
+            ad.setCategory(DaoFactory.getCategoriesDao().categoryName(ad.getId()));
 
+        });
+
+        request.setAttribute("ads", adCats);
 
         request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
     }
