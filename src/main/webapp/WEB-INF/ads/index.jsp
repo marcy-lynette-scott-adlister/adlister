@@ -20,6 +20,7 @@
                     </div>
                         <a href="/showad?id=${ad.id}"><h2>${ad.title}</h2></a>
                         <p class="ad-paragraph">${ad.description}</p>
+                        <p><c:out value="Category: ${category}"/></p>
                     <p class="read-more"><a href="/showad?id=${ad.id}">Read More <i class="fas fa-angle-double-right"></i></a></p>
                 </div>
         </c:forEach>
