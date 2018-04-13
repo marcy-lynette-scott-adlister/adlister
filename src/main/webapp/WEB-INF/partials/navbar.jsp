@@ -35,14 +35,15 @@
 
             <ul id="menu">
 
-                <li><a href="/ads">Game Lister</a></li>
+                <a href="/ads"><li>Game Lister</li></a>
                 <c:if test="${sessionScope.user != null}">
-                    <li><a href="/profile">Profile</a></li>
-                    <li><a href="/logout">Logout</a></li>
+                    <a href="/profile"><li>Profile</li></a>
+                    <a href="/ads/create"><li>Create Ad</li></a>
+                    <a href="/logout"><li>Logout</li></a>
                 </c:if>
                 <c:if test="${sessionScope.user == null}">
-                    <li><a href="/register">Register</a></li>
-                    <li><a href="/login">Login</a></li>
+                    <a href="/register"><li>Register</li></a>
+                    <a href="/login"><li>Login</li></a>
                 </c:if>
 
             </ul>
