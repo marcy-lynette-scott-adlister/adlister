@@ -27,7 +27,7 @@
                 <input name="adPic" type="text" id="adImage" value=${url} >
 
                 <label for="category">Category</label>
-                <input type="text" id="category" name="category" value="<c:out value="${category}" />">
+                <input type="text" id="category" name="category" value="<c:out value="${ad.category}" />">
 
                 <jsp:include page="/WEB-INF/partials/messages.jsp" />
 
