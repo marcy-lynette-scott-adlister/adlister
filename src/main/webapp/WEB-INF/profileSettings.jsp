@@ -27,10 +27,7 @@
                 <input name="profilePic" type="text" id="profileImage" value=${url} >
 
                 <input class="big-form-wrap-button" type="submit" value="Update">
-
             </form>
-        </div>
-        <div class="big-form-wrap">
             <form action="/update" method="POST">
 
                 <label for="oldPass">Old Password</label>
