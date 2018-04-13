@@ -31,6 +31,11 @@ public class CreateAdServlet extends HttpServlet {
         String url = request.getParameter("url");
         User user = (User) request.getSession().getAttribute("user");
 
+        request.getSession().setAttribute("title", title);
+        request.getSession().setAttribute("description", description);
+        request.getSession().setAttribute("category", category.getCategory());
+        request.getSession().setAttribute("url", url);
+
         boolean inputHasErrors = title.isEmpty() || description.isEmpty();
         boolean titleLengthCheck = title.length() > 240;
         boolean descriptionLengthCheck = title.length() > 1000;
@@ -60,6 +65,11 @@ public class CreateAdServlet extends HttpServlet {
             description,
             url
         );
+        request.getSession().removeAttribute("title");
+        request.getSession().removeAttribute("description");
+        request.getSession().removeAttribute("category");
+        request.getSession().removeAttribute("url");
+
         Long id = DaoFactory.getAdsDao().insert(ad);
         Long category_id = DaoFactory.getCategoriesDao().insertCategory(category);
         DaoFactory.getCategoriesDao().insertCatAndAdId(category_id, id);
