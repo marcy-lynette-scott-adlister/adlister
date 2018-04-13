@@ -28,21 +28,34 @@ public class CreateAdServlet extends HttpServlet {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         Category category = new Category(request.getParameter("category"));
+        String url = request.getParameter("url");
         User user = (User) request.getSession().getAttribute("user");
 
         boolean inputHasErrors = title.isEmpty() || description.isEmpty();
         boolean titleLengthCheck = title.length() > 240;
         boolean descriptionLengthCheck = title.length() > 1000;
+        boolean urlLengthCheck = url.length() > 255;
 
 
         if(inputHasErrors) {
             request.getSession().setAttribute("message", "All fields required!");
+        } else if (titleLengthCheck) {
+            request.getSession().setAttribute("message", "Title too long!");
+        } else if (descriptionLengthCheck) {
+            request.getSession().setAttribute("message", "Description too long!");
+        } else if (urlLengthCheck) {
+            request.getSession().setAttribute("message", "Url too long!");
+        }
+        if (inputHasErrors || titleLengthCheck || descriptionLengthCheck || urlLengthCheck) {
+            response.sendRedirect("/ads/create");
+            return;
         }
 
         Ad ad = new Ad(
             user.getId(),
             title,
-            description
+            description,
+            url
         );
         Long id = DaoFactory.getAdsDao().insert(ad);
         Long category_id = DaoFactory.getCategoriesDao().insertCategory(category);
