@@ -35,6 +35,7 @@ public class CreateAdServlet extends HttpServlet {
         boolean titleLengthCheck = title.length() > 240;
         boolean descriptionLengthCheck = title.length() > 1000;
         boolean urlLengthCheck = url.length() > 255;
+        boolean categoryLengthCheck = url.length() > 100;
 
 
         if(inputHasErrors) {
@@ -43,10 +44,12 @@ public class CreateAdServlet extends HttpServlet {
             request.getSession().setAttribute("message", "Title too long!");
         } else if (descriptionLengthCheck) {
             request.getSession().setAttribute("message", "Description too long!");
+        } else if (categoryLengthCheck) {
+            request.getSession().setAttribute("message", "Category too long!");
         } else if (urlLengthCheck) {
             request.getSession().setAttribute("message", "Url too long!");
         }
-        if (inputHasErrors || titleLengthCheck || descriptionLengthCheck || urlLengthCheck) {
+        if (inputHasErrors || titleLengthCheck || descriptionLengthCheck || urlLengthCheck || categoryLengthCheck) {
             response.sendRedirect("/ads/create");
             return;
         }
