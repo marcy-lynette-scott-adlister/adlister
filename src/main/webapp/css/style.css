@@ -29,6 +29,10 @@ header, container, footer {
     grid-template-rows: auto;
     width: 100%;
 }
+container {
+    padding-bottom: 2em;
+    background-color: #008382;
+}
 header{
     grid-template-areas:
             ". logo logo nav-bar nav-bar nav-bar nav-bar .";
