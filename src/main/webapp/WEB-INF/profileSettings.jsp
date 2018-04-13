@@ -8,50 +8,55 @@
 </head>
 <body>
 <jsp:include page="partials/navbar.jsp" />
-<div class="container">
-    <h1>Please fill in your information.</h1>
-    <form action="/edit" method="post">
-        <div class="form-group">
-            <label>Username
-                <input name="username" class="form-control" type="text" value=${sessionScope.user.username}>
-            </label>
-        </div>
-        <div class="form-group">
-            <label>Email
-                <input name="email" class="form-control" type="text" value=${sessionScope.user.email}>
-            </label>
-        </div>
-        <div class="form-group">
-            <label>Profile Picture
-                <input name="profilePic" class="form-control" type="text" value=${url}>
-            </label>
-        </div>
-        <input type="submit" class="btn btn-primary btn-block">
-    </form>
-        <jsp:include page="/WEB-INF/partials/messages.jsp" />
 
-    <form action="/update" method="post">
-        <div class="form-group">
-            <label>Old Password
-                <input name="old_password" class="form-control" type="password">
-            </label>
+<container>
+    <div class="clear-grid">
+        <h1>Edit Your Profile</h1>
+        <jsp:include page="/WEB-INF/partials/messages.jsp" />
+        <div class="big-form-wrap">
+            <form action="/edit" method="POST">
+
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="<c:out value="${sessionScope.user.username}" />">
+
+
+                <label for="email">Email</label>
+                <input name="email" id="email" type="text" value="<c:out value='${sessionScope.user.email}'/>">
+
+                <label for="profileImage">Profile Image</label>
+                <input name="profilePic" type="text" id="profileImage" value=${url} >
+
+                <input class="big-form-wrap-button" type="submit" value="Update">
+
+            </form>
         </div>
-        <div class="form-group">
-            <label>New Password
-                <input name="new_password" class="form-control" type="password">
-            </label>
+        <div class="big-form-wrap">
+            <form action="/update" method="POST">
+
+                <label for="oldPass">Old Password</label>
+                <input type="password" id="oldPass" name="old_password">
+
+
+                <label for="newPass">Old Password</label>
+                <input type="password" id="newPass" name="new_password">
+
+                <label for="confirmPass">Confirm New Password</label>
+                <input name="confirm_new_password" type="password" id="confirmPass">
+
+                <input class="big-form-wrap-button" type="submit" value="Update">
+
+            </form>
         </div>
-        <div class="form-group">
-            <label>Confirm New Password
-                <input name="confirm_new_password" class="form-control" type="password">
-            </label>
+        <div class="big-form-wrap">
+            <form action="/delete" method="POST">
+
+                <input type="hidden" name="user_id" value="${session.Scope.user.id}">
+                <input type="submit" class="big-form-wrap-button" value="Delete Account">
+
+            </form>
         </div>
-        <input type="submit" class="btn btn-primary btn-block">
-    </form>
-    <form action="/delete" method="post">
-        <input type="hidden" name="user_id" value="${session.Scope.user.id}">
-        <input type="submit" class="btn btn-warning btn-block" value="Delete Account">
-    </form>
-</div>
+
+    </div>
+</container>
 </body>
 </html>
