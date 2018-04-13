@@ -25,5 +25,6 @@
     </div>
 </container>
 <jsp:include page="/WEB-INF/partials/footer.jsp" />
+<%--Merge comment--%>
 </body>
 </html>
