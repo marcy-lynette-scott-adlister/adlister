@@ -21,6 +21,10 @@
                 <label for="category">Category</label>
                 <input id="category" name="category" class="form-control" type="text">
             </div>
+            <div class="form-group">
+                <label for="url">Image</label>
+                <input id="url" name="url" class="form-control" type="text">
+            </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
     </div>
