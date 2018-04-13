@@ -35,7 +35,7 @@ public class CreateAdServlet extends HttpServlet {
         boolean titleLengthCheck = title.length() > 240;
         boolean descriptionLengthCheck = title.length() > 1000;
         boolean urlLengthCheck = url.length() > 255;
-        boolean categoryLengthCheck = url.length() > 100;
+        boolean categoryLengthCheck = category.getCategory().length() > 100;
 
 
         if(inputHasErrors) {
