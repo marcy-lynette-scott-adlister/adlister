@@ -19,6 +19,6 @@
     <p>Seller: <a href="/seller?username=<c:out value='${user.username}'/>"><c:out value="${user.username}"/></a></p>
     <p>Category: <c:out value="${category}"/></p>
 </div>
-
+<jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
 </html>
