@@ -31,7 +31,7 @@ public class ViewProfileServlet extends HttpServlet {
         // iterate over userAds and for each Ad object, setCategoryName(whateverMethodGetsTheCategoryName())
 
         userAds.forEach(ad -> {
-           Ad newAd =  ad.setCategory(DaoFactory.getCategoriesDao().categoryName(ad.getId()));
+           ad.setCategory(DaoFactory.getCategoriesDao().categoryName(ad.getId()));
         });
 
         request.setAttribute("userUrl", userUrl);
@@ -45,8 +45,9 @@ public class ViewProfileServlet extends HttpServlet {
         String description = request.getParameter("Description");
         Long id = Long.parseLong(request.getParameter("Update"));
         User user = (User)request.getSession().getAttribute("user");
-        Ad ad = new Ad(id, user.getId(), title, description);
-        DaoFactory.getAdsDao().updateAd(ad);
+//        String url = request.getParameter("adPic");
+//        Ad ad = new Ad(id, user.getId(), title, description, url);
+//        DaoFactory.getAdsDao().updateAd(ad);
         String category = request.getParameter("category");
         Category category1 = new Category(category);
 

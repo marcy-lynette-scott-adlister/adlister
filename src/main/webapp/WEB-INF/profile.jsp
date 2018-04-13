@@ -21,6 +21,7 @@
             <div class="col-md-6">
                 <a href="/showad?id=${ad.id}"><h2>${ad.title}</h2></a>
                 <p>${ad.description}</p>
+                <p>Category: ${ad.category}</p>
                 <form action="/ads/edit" method="post">
                 <input type="hidden" name="Edit" value="${ad.id}">
                     <input type="submit" value="Edit">
