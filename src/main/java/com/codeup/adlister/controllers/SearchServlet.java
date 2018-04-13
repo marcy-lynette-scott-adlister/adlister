@@ -21,6 +21,15 @@ public class SearchServlet extends HttpServlet {
             String search = request.getParameter("search");
             List<Ad> searchResults= DaoFactory.getAdsDao().searchAd(search);
             request.setAttribute("searchResults", searchResults);
+
+        searchResults.forEach(ad -> {
+
+            ad.setCategory(DaoFactory.getCategoriesDao().categoryName(ad.getId()));
+
+        });
+
+        request.setAttribute("ads", searchResults);
+
         request.getRequestDispatcher("/WEB-INF/ads/search.jsp").forward(request, response);
     }
 }
