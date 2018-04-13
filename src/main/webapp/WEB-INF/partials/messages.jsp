@@ -7,5 +7,10 @@
         session.removeAttribute("message");
         request.getSession().removeAttribute("username");
         request.getSession().removeAttribute("email");
+        request.getSession().removeAttribute("title");
+        request.getSession().removeAttribute("description");
+        request.getSession().removeAttribute("category");
+        request.getSession().removeAttribute("url");
+
     %>
 </c:if>
