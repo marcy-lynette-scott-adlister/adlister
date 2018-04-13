@@ -30,9 +30,9 @@ public class ViewProfileServlet extends HttpServlet {
         // assuming you have added a categoryName property to the Ad model...
         // iterate over userAds and for each Ad object, setCategoryName(whateverMethodGetsTheCategoryName())
 
-//        userAds.forEach(ad -> {
-//            DaoFactory.getCategoriesDao().categoryName(ad.getCategory());
-//        });
+        userAds.forEach(ad -> {
+           Ad newAd =  ad.setCategory(DaoFactory.getCategoriesDao().categoryName(ad.getId()));
+        });
 
         request.setAttribute("userUrl", userUrl);
         request.setAttribute("userAds", userAds);
