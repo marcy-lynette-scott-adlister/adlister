@@ -25,6 +25,7 @@
                 <label>Category:
                     <input type="text" name="category" value="<c:out value="${category}" />">
                 </label>
+                <jsp:include page="/WEB-INF/partials/messages.jsp" />
                 <input type="submit" value="Update">
                 <input type="hidden" value="${ad.id}" name="Update">
             </form>

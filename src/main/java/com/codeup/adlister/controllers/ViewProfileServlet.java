@@ -51,29 +51,6 @@ public class ViewProfileServlet extends HttpServlet {
         String category = request.getParameter("category");
         Category category1 = new Category(category);
 
-        boolean inputHasErrors = title.isEmpty() || description.isEmpty();
-        boolean titleLengthCheck = title.length() > 240;
-        boolean descriptionLengthCheck = title.length() > 1000;
-        boolean urlLengthCheck = url.length() > 255;
-        boolean categoryLengthCheck = url.length() > 100;
-
-
-        if(inputHasErrors) {
-            request.getSession().setAttribute("message", "All fields required!");
-        } else if (titleLengthCheck) {
-            request.getSession().setAttribute("message", "Title too long!");
-        } else if (descriptionLengthCheck) {
-            request.getSession().setAttribute("message", "Description too long!");
-        } else if (categoryLengthCheck) {
-            request.getSession().setAttribute("message", "Category too long!");
-        } else if (urlLengthCheck) {
-                request.getSession().setAttribute("message", "Url too long!");
-        }
-        if (inputHasErrors || titleLengthCheck || descriptionLengthCheck || urlLengthCheck || categoryLengthCheck) {
-            response.sendRedirect("/ads/edit");
-            return;
-        }
-
         if (DaoFactory.getCategoriesDao().checkCategoryExists(category) == null){
             Long cat_id = DaoFactory.getCategoriesDao().insertCategory(category1);
             DaoFactory.getCategoriesDao().insertCatAndAdId(cat_id, id);
