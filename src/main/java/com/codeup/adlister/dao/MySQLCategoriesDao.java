@@ -52,7 +52,7 @@ public class MySQLCategoriesDao implements Categories {
                 return rs.getString(1);
             }
             else {
-                return "";
+                return "No Category";
             }
         }
         catch(SQLException e) {
