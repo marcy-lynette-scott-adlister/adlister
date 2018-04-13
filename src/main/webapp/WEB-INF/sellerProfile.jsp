@@ -11,13 +11,6 @@
 <container>
     <div class="clear-grid">
         <h1><c:out value="${seller.username}"/>'s Ads</h1>
-        <div class="profile-pic-wrap">
-            <div class="profile-pic">
-                <img src="${seller.url}" alt="">
-            </div>
-        </div>
-        <div class="line"></div>
-
         <c:forEach var="ad" items="${sellerAds}">
 
             <div class="profile-ad-wrap">
@@ -33,6 +26,6 @@
 
     </div>
 </container>
-
+<jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
 </html>
