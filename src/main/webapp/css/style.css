@@ -147,7 +147,7 @@ nav .hamburger{
     box-sizing: border-box;
     float: left;
     padding: 1em;
-    height: 15em;
+    height: 21em;
     background-color: #fff;
 }
 .ad-wrap h2 {
@@ -155,15 +155,15 @@ nav .hamburger{
     font-weight: 700;
     font-size: 1.5em;
     color: #f47721;
-    width: 65%;
-    float: left;
+    width: 100%;
     margin-top: 0;
+    text-align: center;
 }
 .ad-picture {
-    width: 6em;
-    height: 6em;
-    float: left;
-    margin-right: 1em;
+    width: 7em;
+    height: 7em;
+    margin-right: auto;
+    margin-left: auto;
     border: #f47721 solid .1em;
     box-sizing: border-box;
 }
@@ -267,8 +267,8 @@ width: 95%;
     100% { opacity: 1; }
     from { opacity: 0; }
     to   { opacity: 1; }
-    from { transform: translatex(-100%); }
-    to   { transform: translatex(0); }
+    from { transform: translatex(-100%) rotateX(0deg); }
+    to   { transform: translatex(0) rotateX(720deg); }
 }
 @-webkit-keyframes name-fadein {
     0% { opacity: 0; }
@@ -291,8 +291,8 @@ width: 95%;
     100% { opacity: 1; }
     from { opacity: 0; }
     to   { opacity: 1; }
-    from { transform: translatex(-100%); }
-    to   { transform: translatex(0); }
+    from { transform: translatex(-100%) rotateX(0deg); }
+    to   { transform: translatex(0) rotateX(360deg); }
 }
 .banner-name {
     font-family: 'Montserrat Alternates', sans-serif;
@@ -328,8 +328,8 @@ width: 95%;
     100% { opacity: 1; }
     from { opacity: 0; }
     to   { opacity: 1; }
-    from { transform: translatex(100%); }
-    to   { transform: translatex(0); }
+    from { transform: translatex(100%) rotateX(0deg); }
+    to   { transform: translatex(0) rotateX(720deg); }
 }
 .banner-name2 {
     font-family: 'Montserrat Alternates', sans-serif;
@@ -455,7 +455,6 @@ width: 95%;
     }
     .ad-wrap h2 {
         font-size: 1.5em;
-        width: 55%;
     }
 }
 @media only screen and (max-width: 1000px) {
@@ -697,7 +696,7 @@ width: 95%;
     height: 4px;
     margin-bottom: 5px;
     position: relative;
-    background: #474648;
+    background: #999;
     border-radius: 3px;
     z-index: 1;
     transform-origin: 4px 0px;
@@ -727,8 +726,8 @@ width: 95%;
     position: absolute;
     width: 400px;
     margin: -100px 0 0 80px;
-    padding-top: 100px;
-    background: #1e362b;
+    padding-top: 8em;
+    background: #32ab49;
     list-style-type: none;
     box-shadow: 0px 1px 20px 1px #000;
     border-radius: 1em;
@@ -737,35 +736,35 @@ width: 95%;
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 #menu li{
-    padding: 10px 0 10px 1em;
-    font-size: 1.2em;
-    font-weight: 300;
+    padding: 1.8em 0 1.8em 0;
+    font-size: 1.5em;
+    font-weight: 700;
     float: none;
     list-style: none;
     text-decoration: none !important;
-    color: #dcb352;
-    background-color: #30493d;
+    color: #bdd640;
+    background-color: #262264;
     margin-bottom: .25em;
 }
 #menu li a{
     text-decoration: none !important;
-    color: #dcb352;
+    color: #bdd640;
 }
 #menu li a:link{
     text-decoration: none !important;
-    color: #dcb352;
+    color: #bdd640;
 }
 #menu li a:hover{
     text-decoration: none !important;
-    color: #a0792b;
+    color: #32ab49;
 }
 #menu li a:visited{
     text-decoration: none !important;
-    color: #dcb352;
+    color: #bdd640;
 }
 #menu li a:active{
     text-decoration: none !important;
-    color: #dcb352;
+    color: #bdd640;
 }
 #menuToggle input:checked ~ ul
 {
