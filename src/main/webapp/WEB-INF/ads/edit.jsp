@@ -9,31 +9,35 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<div class="container">
-        <div class="col-md-6">
+<container>
+    <div class="clear-grid">
+        <h1>Edit Ad</h1>
 
-            <form action="/profile" method="post">
-                <label>Title:
-                    <input type="text" name="Edit" value="<c:out value="${ad.title}" />">
-                </label>
-                <label>Description:
-                    <textarea name="Description" value="Description" id="" cols="30" rows="10"><c:out value="${ad.description}"/></textarea>
-                </label>
-                <label>Image:
-                    <input name="adPic" class="form-control" type="text" value=${url}>
-                </label>
-                <label>Category:
-                    <input type="text" name="category" value="<c:out value="${category}" />">
-                </label>
+        <div class="big-form-wrap">
+            <form action="/profile" method="POST">
+
+                <label for="title">Title</label>
+                <input type="text" id="title" name="Edit" value="<c:out value="${ad.title}" />">
+
+
+                <label for="description">Description</label>
+                <textarea name="Description" value="Description" id="description" cols="30" rows="10"><c:out value="${ad.description}"/></textarea>
+
+                <label for="adImage">Ad Image</label>
+                <input name="adPic" type="text" id="adImage" value=${url} >
+
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" value="<c:out value="${category}" />">
+
                 <jsp:include page="/WEB-INF/partials/messages.jsp" />
-                <input type="submit" value="Update">
+
+                <input class="big-form-wrap-button" type="submit" value="Update">
                 <input type="hidden" value="${ad.id}" name="Update">
+
             </form>
-
-
-
         </div>
-</div>
 
+    </div>
+</container>
 </body>
 </html>
