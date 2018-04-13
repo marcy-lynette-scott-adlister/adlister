@@ -243,7 +243,7 @@ nav .hamburger{
     box-sizing: border-box;
     float: left;
     padding: 1em;
-    height: 21em;
+    height: 23em;
     background-color: #fff;
 }
 .ad-wrap h2 {
@@ -324,7 +324,6 @@ width: 95%;
     color: #f47721;
 }
 .big-form-wrap {
-    height: 40em;
     width: 100%;
 }
 .big-form-wrap label{
@@ -344,13 +343,20 @@ width: 95%;
     float: none;
     border-radius: 2em;
     padding-left: 1em;
-
-
 }
 .big-form-wrap-button {
     background-color: #262264;
     color: #bdd640;
     font-family: "Montserrat Alternates", sans-serif;
+}
+.big-form-wrap textarea {
+    width: 80%;
+    height: 4em;
+    font-size: 1.2em;
+    margin: 0 10% 1em 10%;
+    float: none;
+    border-radius: 2em;
+    padding-left: 1em;
 }
 .alert {
     width: 80%;
