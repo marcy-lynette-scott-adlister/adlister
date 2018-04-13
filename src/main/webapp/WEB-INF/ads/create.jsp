@@ -6,6 +6,7 @@
     </jsp:include>
 </head>
 <body>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div class="container">
         <h1>Create a new Ad</h1>
         <form action="/ads/create" method="post">
@@ -25,6 +26,7 @@
                 <label for="url">Image</label>
                 <input id="url" name="url" class="form-control" type="text">
             </div>
+            <jsp:include page="/WEB-INF/partials/messages.jsp" />
             <input type="submit" class="btn btn-block btn-primary">
         </form>
     </div>

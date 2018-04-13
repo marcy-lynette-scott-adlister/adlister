@@ -39,7 +39,7 @@ public class CreateAdServlet extends HttpServlet {
 
 
         if(inputHasErrors) {
-            request.getSession().setAttribute("message", "All fields required!");
+            request.getSession().setAttribute("message", "Title and Description required!");
         } else if (titleLengthCheck) {
             request.getSession().setAttribute("message", "Title too long!");
         } else if (descriptionLengthCheck) {
