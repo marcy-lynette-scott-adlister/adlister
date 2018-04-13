@@ -12,15 +12,17 @@
 <container>
     <div class="clear-grid">
         <h1><c:out value="${ad.title}"/></h1>
-        <div class="profile-pic-wrap">
-            <div class="profile-pic">
-                <img src="<c:out value='${ad.url}'/>" alt="">
+        <div class="ad-show-wrap">
+            <div class="ad-show-pic-wrap">
+                <div class="ad-show-pic">
+                    <img src="<c:out value='${ad.url}'/>" alt="">
+                </div>
             </div>
-        </div>
-        <div>
-            <p><c:out value="${ad.description}"/></p>
-            <p>Seller: <a href="/seller?username=<c:out value='${user.username}'/>"><c:out value="${user.username}"/></a></p>
-            <p>Category: <c:out value="${category}"/></p>
+            <div class="description-wrap">
+                <p><c:out value="${ad.description}"/></p>
+                <p>Seller: <a href="/seller?username=<c:out value='${user.username}'/>"><c:out value="${user.username}"/></a></p>
+                <p>Category: <c:out value="${category}"/></p>
+            </div>
         </div>
     </div>
 </container>
