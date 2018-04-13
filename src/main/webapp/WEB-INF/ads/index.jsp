@@ -16,7 +16,7 @@
                 <div class="ad-wrap">
                     <div class="ad-picture">
                         <%--<img style="width: 100%" src="${ad.url}" alt="">--%>
-                            <img style="width: 100%" src="/images/ads/1.jpg" alt="">
+                            <img style="width: 100%" src="<c:out value='${ad.url}'/>" alt="">
                     </div>
                         <a href="/showad?id=${ad.id}"><h2>${ad.title}</h2></a>
                         <p class="ad-paragraph">${ad.description}</p>
